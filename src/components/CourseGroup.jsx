@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Image, Text, Link } from '@chakra-ui/react';
+import { Box, Image, Text} from '@chakra-ui/react';
+import {Link} from "react-router-dom"
 
 export const CourseGroup = ({ index, el }) => {
     return (
@@ -11,7 +12,7 @@ export const CourseGroup = ({ index, el }) => {
                         return (
 
                             <Box key={ind} boxShadow="0px 16px 32px 0px rgba(233, 238, 242, 0.4)" gridColumn="span 6" position="relative" padding="24px" background="#FFFFFF" marginTop="16px" borderRadius="8px" display="block" alignItems="center" cursor="pointer" transition="box-shadow 0.2s ease-in-out">
-                                <Link href={`/goal/${e.title}`}>
+                                <Link to={`/goal/${e.title}`}>
                                     <Box display="flex" justifyContent="space-between" alignItems="flex-start" marginRight="0px" marginBottom="20px">
                                         <Box display="inline-block" boxSizing="border-box" overflow="hidden" width="initial" height="initial" background="none" opacity="1" border="0" margin="0" padding="0" position="relative" maxWidth="100%" >
                                             <Box display="block" boxSizing="border-box" width="initial" height="initial" background="none" opacity="1" border="0" margin="0" padding="0" maxWidth="100%">

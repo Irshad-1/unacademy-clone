@@ -17,8 +17,7 @@ export function SeeSubscription(){
             let data = await res.json();
                let subscription = data.user.subscription.filter((eachSub)=> {
                     return eachSub.title === params.title
-                        
-                  
+                         
                })
                setSubscribeUser(subscription)
               
