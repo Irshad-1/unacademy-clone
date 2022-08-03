@@ -1,10 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import React from 'react';
-import { Box, Image, Button, Input, Heading, InputGroup, InputLeftElement, UnorderedList, Link, Text } from '@chakra-ui/react';
+import { Box, Image, Button, Input, Heading, InputGroup, InputLeftElement, UnorderedList, Text } from '@chakra-ui/react';
 import { ChevronRightIcon, SearchIcon } from '@chakra-ui/icons';
 import { CourseGroup } from './CourseGroup';
 import { ListItems } from './ListItems';
 import { Footer } from './Footer';
+import {Link} from "react-roter-dom";
 
 export const Explore = () => {
     const [value, setValue] = React.useState("");
@@ -75,7 +76,7 @@ export const Explore = () => {
                         border={openSearch ? "0.05px solid grey" : "0"}
                     >{data.map((el, index) => {
                         return (
-                            <Link key={index} href={`/goal/${el.title}`}>
+                            <Link key={index} to={`/goal/${el.title}`}>
                                 <Box display="flex" justifyContent="space-between" alignItems="center"><Box display="flex"
                                     justifyContent="flex-start"
                                     alignItems="center"
