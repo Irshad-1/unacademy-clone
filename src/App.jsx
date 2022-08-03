@@ -17,6 +17,7 @@ import LoginEmail from './pages/LogIn/loginEmail';
 import Register from './pages/Register/Register';
 import { Explore } from './components/Explore';
 import { Subscription } from "./components/Subscription";
+import { SeeSubscription } from "./components/SeeSubscription";
 import { Payment } from "./components/Payment";
 import { Goal } from './pages/Goal/Goal';
 import { Goals } from './pages/Goal/Goals';
@@ -32,9 +33,9 @@ function App() {
       <Route path='/login' element={<LoginEmail />}></Route>
       <Route path='/register' element={<Register />}></Route>
       <Route path="/goal/subscription/:title" element={<Subscription />}></Route>
+      <Route path="/goal/see-subscription/:title" element={<SeeSubscription />}></Route>
       <Route path='/goals/full-stack-development' element={<Goals />}></Route>
       <Route path='/goal/payment' element={<Payment />}></Route>
-
       <Route path='/goal/:title' element={<Goal />}></Route>
 
 

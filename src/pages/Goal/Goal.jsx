@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
 
 import "./Goal.css";
 
@@ -21,6 +23,41 @@ export const Goal = () => {
   const [goalData,setGoalData]=React.useState()
   const [freeClass,setFreeClass]=React.useState([])
   const [topEducator,setTopEducator]=React.useState([])
+
+  const SECRET = "yutuyghguyjksttyyy";
+
+  const [subscribeUser, setSubscribeUser] = React.useState([])
+
+  let token = localStorage.getItem('token');
+
+       async function getUserById(id){
+        try {  
+        let res = await fetch(`https://unacadmey-test-app.herokuapp.com/getUser/${id}`);
+          let data = await res.json();
+             let subscription = data.user.subscription.filter((eachSub)=> {
+                return eachSub.title === params.title
+                  
+             })
+             setSubscribeUser(subscription)
+            
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+  React.useEffect(() => {
+      if (token) {
+          const decoded_user = jwt_decode(token, SECRET);
+          getUserById(decoded_user.id)
+      
+      } else {
+         
+          console.log("token not found");
+      }
+  }, [token])
+
+console.log(subscribeUser);
 
   useEffect(()=>{
     getGoal(params.title).then(response=>{
@@ -53,11 +90,15 @@ export const Goal = () => {
             Get Plus subscription and access unlimited live and recorded courses from India's best educators
 
             </h3>
-            <Link to={`/goal/subscription/${goalData?.title}`}>
+             {subscribeUser.length == 0?(<Link to={`/goal/subscription/${goalData?.title}`}>
               <button className="first-box-item2-2-btn">
                 Get subscription
               </button>
-            </Link>
+            </Link>):(<Link to={`/goal/see-subscription/${goalData?.title}`}>
+              <button className="first-box-item2-2-btn">
+                See subscription
+              </button>
+            </Link>)}
           </div>
         </div>
         <div className="first-box-item3">
@@ -149,9 +190,9 @@ export const Goal = () => {
           </div>
         </div>
         <div className="free-classes-educators-list">
-        {freeClass.map((el) => {
+        {freeClass.map((el , index) => {
           return (
-            <div className="educator">
+            <div key = {index} className="educator">
               <div className="educator-image">
                 <img src={el.imageUrl} alt="" />
               </div>
@@ -180,9 +221,9 @@ export const Goal = () => {
             </div>
         </div>
         <div className="top-educators-list">
-        {topEducator.map((el) => {
+        {topEducator.map((el , index) => {
           return (
-            <div className="educator">
+            <div key = {index} className="educator">
               <div className="topEducator-image">
                 <img src={el.imageUrl} alt="" />
               </div>

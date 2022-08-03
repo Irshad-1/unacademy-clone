@@ -33,11 +33,18 @@ function Register() {
   const [error , setError] = React.useState(false);
   const navigate = useNavigate();
 
+  let token = localStorage.getItem('token');
+
+
   const handleRegister =  (e) => {
     e.preventDefault();
     setLoading(true)
+
     register({name,email,password,mobile})
     .then((res)=>{
+      if(token){
+        return alert("You need to logout first !")
+      }
        if(res.error) {
            return alert(res.error)
        }

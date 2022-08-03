@@ -19,6 +19,8 @@ function Login() {
   // const {setUser} = React.useContext(LoginContext);
   const navigate = useNavigate();
 
+  let localToken = localStorage.getItem('token');
+
   const handleLogin = async (e) => {
     e.preventDefault();
     // console.log(email, password);
@@ -41,19 +43,30 @@ function Login() {
       if(response.error) {
         return alert(response.error)
     }
-     
+
+    let token = response.token;
+
+    if(localToken){
+        if(localToken === token){
+            return alert("you are already logged in")
+        }
+
+        return alert("You need to logout first !")
+    }
       alert('login success');
-      let token = response.token;
+
       localStorage.setItem('token', token);
       // setUser(token);
-    
 
       if(proceed === true){
           console.log(proceed);
           navigate("/goal/payment")
       }else {  
+        window.location.reload()
         navigate('/');
       }
+
+      window.location.reload()
       
     } catch (error) {
       console.log(error);
