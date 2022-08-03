@@ -5,7 +5,7 @@ import { ChevronRightIcon, SearchIcon } from '@chakra-ui/icons';
 import { CourseGroup } from './CourseGroup';
 import { ListItems } from './ListItems';
 import { Footer } from './Footer';
-import {Link} from "react-roter-dom";
+import {Link} from "react-router-dom";
 
 export const Explore = () => {
     const [value, setValue] = React.useState("");
