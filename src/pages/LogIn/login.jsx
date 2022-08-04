@@ -62,7 +62,6 @@ function Login() {
           console.log(proceed);
           navigate("/goal/payment")
       }else {  
-        window.location.reload()
         navigate('/');
       }
 
